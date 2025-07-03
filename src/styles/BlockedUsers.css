@@ -1,0 +1,34 @@
+/* BlockedUsers.css */
+.blocked-users-container {
+    padding: 20px;
+  }
+  
+  .blocked-users-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .blocked-user-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .user-info {
+    flex: 1;
+  }
+  
+  .unblock-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .unblock-button:hover {
+    background-color: #218838;
+  }

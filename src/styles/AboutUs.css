@@ -1,0 +1,193 @@
+.about-new {
+    height: 716px;
+    padding: 75px 0;
+    background-color: #6ba9d5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .anew-title {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .anew-h1 {
+    font-size: 36px;
+    color: black;
+    font-weight: 400;
+  }
+  
+  .anew-h4 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #666;
+  }
+  
+   .anew-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto; 
+    padding: 20px;
+  }
+  
+  .anew-card {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .anew-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .anew-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; 
+  }
+  
+  .anew-card-text {
+    padding: 20px;
+    text-align: left; 
+  }
+  
+  .anew-card-text strong {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .anew-card-text p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+  }
+  
+  .anew-title {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .anew-h1 {
+    font-size: 36px;
+    color: #333;
+    font-weight: 400;
+  }
+  
+  .anew-h4 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #666;
+  }
+  
+  .about-new {
+    padding: 50px 20px;
+    background-color: #6b92cc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  @media (max-width: 768px) {
+    .anew-h1 {
+      font-size: 28px;
+    }
+  
+    .anew-h4 {
+      font-size: 18px;
+    }
+  
+    .anew-cards {
+      padding: 10px;
+    }
+  
+    .anew-card-text {
+      padding: 15px;
+    }
+  }
+  
+.celebration-container {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #ffe59d, #f9c5d1);
+  color: #333333;
+}
+
+.celebration-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.celebration-heading {
+  font-size: 36px;
+  font-weight: bold;
+  color: #444444;
+}
+
+.celebration-subheading {
+  font-size: 20px;
+  color: #666666;
+}
+
+
+.celebration-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.celebration-card {
+  background: #ffffff;
+  border: 2px solid #f1e3ff; 
+  border-radius: 16px;
+  overflow: hidden;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.celebration-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.celebration-card-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.celebration-card-image {
+  width: 80%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.celebration-card-text {
+  margin-top: 15px;
+}
+
+.celebration-card-text strong {
+  display: block;
+  font-size: 18px;
+  color: #444444;
+  margin-bottom: 10px;
+}
+
+.celebration-card-text p {
+  font-size: 14px;
+  color: #555555;
+  line-height: 1.6;
+}

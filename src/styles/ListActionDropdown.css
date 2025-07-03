@@ -1,0 +1,157 @@
+/* ListingActionsDropdown.css */
+.property-menu {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .menu-toggler {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+  
+  .dropdown-menu button {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu button:hover {
+    background: #f0f0f0;
+  }
+
+  /* Add to your existing CSS */
+.property-card {
+    position: relative; /* Ensure the card is a positioning context */
+    padding-top: 40px; /* Create space for the menu */
+  }
+  
+  .property-card-header {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+  }
+  
+  .menu-toggler {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+  }
+  
+  .menu-toggler:hover {
+    background: #f8f9fa;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  }
+  
+  .dropdown-menu {
+    right: 0;
+    left: auto; /* Ensure it aligns to the right */
+    transform: none; /* Remove any existing transforms */
+    top: 100%;
+    margin-top: 5px;
+  }
+
+  /* Report Form Styles */
+.report-form-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 400px;
+}
+
+.report-form-modal h2 {
+  margin-top: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.report-form-modal p {
+  font-size: 14px;
+  color: #666;
+}
+
+.report-form-modal .form-group {
+  margin-bottom: 15px;
+}
+
+.report-form-modal .form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.report-form-modal .form-group input,
+.report-form-modal .form-group select,
+.report-form-modal .form-group textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.report-form-modal .form-group textarea {
+  resize: vertical;
+}
+
+.report-form-modal .form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.report-form-modal .submit-button,
+.report-form-modal .cancel-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.report-form-modal .submit-button {
+  background-color: #28a745;
+}
+
+.report-form-modal .cancel-button {
+  background-color: #dc3545;
+}
+
+.report-form-modal .submit-button:hover {
+  background-color: #218838;
+}
+
+.report-form-modal .cancel-button:hover {
+  background-color: #c82333;
+}

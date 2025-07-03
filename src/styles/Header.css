@@ -1,0 +1,148 @@
+
+.header {
+  max-width: 100%;
+  height: 197px;
+  padding: 30px 30px 20px;
+  position: relative;
+  z-index: 50;
+}
+
+.inner-header {
+  height: 190px;
+}
+
+
+.top-nav {
+  height: 150px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  position: relative;
+  align-items: center;
+}
+
+.bottom-nav {
+  height: 46px;
+  position: relative;
+  background-color: white;
+  transition: position 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.nav-logo {
+  width: 125px;
+  height: 150px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  width: 300px;
+  height: 43px;
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  top: -20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.caption {
+  width: 125px;
+  height: 21px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: gray;
+  font-size: 22px;
+  white-space: nowrap;
+}
+
+.log {
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+
+.sign-in, .sign-up {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  padding: 8px 15px;
+  border: 1px solid black;
+  background-color: transparent;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-right: 10px;
+}
+
+.sign-in:hover, .sign-up:hover {
+  background-color: #333;
+  color: white;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.nav-links li {
+  margin: 0 15px;
+}
+
+.nav-links a {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  position: relative;
+}
+
+
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+.nav-links a.active {
+  text-decoration: underline;
+  
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  height: 65px;
+  z-index: 100; 
+  border-bottom: 1px solid #ddd; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.sticky .nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.sticky .nav-links li {
+  margin: 0 15px;
+}
+
+
