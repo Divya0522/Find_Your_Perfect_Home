@@ -66,6 +66,7 @@ const transporter = nodemailer.createTransport({
     rejectUnauthorized: false
   }
 });
+
 const loanRequestTransporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -79,26 +80,61 @@ const loanRequestTransporter = nodemailer.createTransport({
 
 app.post('/api/forgot-password', async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
-    if (!user) return res.status(404).json({ message: 'User not found' });
+    console.log('Forgot password request for:', req.body.email);
+    
+    // Validate email
+    if (!req.body.email || !req.body.email.includes('@')) {
+      return res.status(400).json({ message: 'Valid email required' });
+    }
 
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      console.log('User not found with email:', req.body.email);
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Generate token
     user.resetPasswordToken = crypto.randomBytes(20).toString('hex');
-    user.resetPasswordExpires = Date.now() + 3600000;
+    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
     
     await user.save({ validateBeforeSave: false });
+    console.log('Reset token generated for user:', user.email);
+
+    // Verify CLIENT_URL is set
+    if (!process.env.CLIENT_URL) {
+      throw new Error('CLIENT_URL environment variable not set');
+    }
 
     const resetUrl = `${process.env.CLIENT_URL}/reset-password/${user.resetPasswordToken}`;
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+    
+    // Test email configuration
+    console.log('Attempting to send email to:', user.email);
+    console.log('Reset URL:', resetUrl);
+
+    const mailOptions = {
+      from: `"Find your Perfect Home" <${process.env.EMAIL_USER}>`,
       to: user.email,
-      subject: 'Password Reset',
-      html: `Click <a href="${resetUrl}">here</a> to reset your password`,
-    });
+      subject: 'Password Reset Request',
+      html: `
+        <p>You requested a password reset. Click the link below:</p>
+        <a href="${resetUrl}">Reset Password</a>
+        <p>This link expires in 1 hour.</p>
+      `,
+      text: `Password reset link: ${resetUrl}`
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log('Reset email sent successfully');
 
     res.status(200).json({ message: 'Reset email sent' });
+    
   } catch (error) {
-    console.error('Forgot password error:', error);
-    res.status(500).json({ message: 'Error processing request', error: error.message });
+    console.error('Full forgot password error:', error);
+    res.status(500).json({ 
+      message: 'Error processing request',
+      error: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+    });
   }
 });
 

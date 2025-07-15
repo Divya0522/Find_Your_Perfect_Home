@@ -8,39 +8,41 @@ const ForgotPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // Validate email input
-    if (!email || !email.includes('@')) {
-      setMessage('Please enter a valid email address.');
-      return;
+  if (!email || !email.includes('@')) {
+    setMessage('Please enter a valid email address.');
+    return;
+  }
+
+  setIsLoading(true);
+  setMessage('');
+
+  try {
+    const response = await fetch('http://localhost:5001/api/forgot-password', {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+      credentials: 'include' // If using cookies
+    });
+
+    const data = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to send reset email');
     }
 
-    setIsLoading(true);
-    setMessage('');
-
-    try {
-      const response = await fetch('http://localhost:5001/api/forgot-password', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to send reset email');
-      }
-
-      const result = await response.json();
-      setMessage(result.message);
-    } catch (error) {
-      console.error('Error:', error.message);
-      setMessage(`Error: ${error.message}`);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    setMessage(data.message || 'Reset email sent. Please check your inbox.');
+  } catch (error) {
+    console.error('Full error:', error);
+    setMessage(error.message || 'An error occurred. Please try again.');
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   return (
     <div className="forgot-password-container">
