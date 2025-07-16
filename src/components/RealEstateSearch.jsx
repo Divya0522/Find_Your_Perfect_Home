@@ -66,7 +66,7 @@ const RealEstateSearch = () => {
   const fetchPropertiesByRating = async (minRating) => {
     try {
       const response = await axios.get(
-        `http://localhost:5001/api/properties/filter-by-rating?minRating=${minRating}`
+        `https://find-your-perfect-home-backend.onrender.com/api/properties/filter-by-rating?minRating=${minRating}`
       );
       setProperties(response.data);
     } catch (error) {
@@ -93,7 +93,7 @@ const RealEstateSearch = () => {
 
   const fetchSavedListings = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/properties/save-listings', {
+      const response = await axios.get('https://find-your-perfect-home-backend.onrender.com/api/properties/save-listings', {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       console.log('Saved listings:', response.data);
@@ -116,7 +116,7 @@ const RealEstateSearch = () => {
         ...filters,
         property_type: activeTab === 'FOR SALE' ? 'Sale' : 'Rent', // Add property_type filter
       }).toString();
-      const response = await axios.get(`http://localhost:5001/api/properties?${queryParams}`);
+      const response = await axios.get(`https://find-your-perfect-home-backend.onrender.com/api/properties?${queryParams}`);
       setProperties(response.data);
     } catch (error) {
       console.error('Error fetching properties:', error);
@@ -136,7 +136,7 @@ const RealEstateSearch = () => {
   const handleSearch = async () => {
     try {
       const queryParams = new URLSearchParams({...filters,property_type: activeTab === 'FOR SALE' ? 'Sale' : 'Rent'}).toString();
-      const response = await axios.get(`http://localhost:5001/api/properties?${queryParams}`);
+      const response = await axios.get(`https://find-your-perfect-home-backend.onrender.com/api/properties?${queryParams}`);
       setProperties(response.data);
     } catch (error) {
       console.error('Search error:', error);
@@ -178,7 +178,7 @@ const RealEstateSearch = () => {
     try {
       console.log('Saving listing with ID:', listingId);
       const response = await axios.post(
-        'http://localhost:5001/api/properties/save-listing',
+        'https://find-your-perfect-home-backend.onrender.com/api/properties/save-listing',
         { listingId }, // Ensure this matches the backend's expected request body
         { headers: { Authorization: `Bearer ${user.token}` } }
       );
@@ -194,7 +194,7 @@ const RealEstateSearch = () => {
     try {
       console.log('Unsaving listing with ID:', listingId);
       await axios.post(
-        'http://localhost:5001/api/properties/unsave-listing',
+        'https://find-your-perfect-home-backend.onrender.com/api/properties/unsave-listing',
         { listingId },
         { headers: { Authorization: `Bearer ${user.token}` } }
       );
@@ -232,7 +232,7 @@ const RealEstateSearch = () => {
           </div>
           <div className="profile-details">
             <img
-              src={user?.avatar?.startsWith('http') ? user.avatar : `http://localhost:5001/${user?.avatar}`}
+              src={user?.avatar?.startsWith('http') ? user.avatar : `https://find-your-perfect-home-backend.onrender.com/${user?.avatar}`}
               alt="Avatar"
               className="profile-avatar"
             />

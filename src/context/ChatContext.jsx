@@ -25,7 +25,7 @@ export const ChatContextProvider = ({ children, user }) => {
 
   // Initialize socket and attach event listeners
   useEffect(() => {
-    const newSocket = io("http://localhost:5001", {
+    const newSocket = io("https://find-your-perfect-home-backend.onrender.com", {
       withCredentials: true,
       transports: ["websocket", "polling"],
     });

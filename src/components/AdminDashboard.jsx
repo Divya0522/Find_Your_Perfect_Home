@@ -28,7 +28,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchBlockedUsers = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/admin/blocked-users');
+        const response = await fetch('https://find-your-perfect-home-backend.onrender.com/api/admin/blocked-users');
         const data = await response.json();
         setBlockedUsers(data);
       } catch (error) {
@@ -42,7 +42,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/users');
+        const response = await fetch('https://find-your-perfect-home-backend.onrender.com/api/users');
         if (!response.ok) throw new Error('Failed to fetch users');
         const result = await response.json();
         setUsers(result || []);
@@ -58,7 +58,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/admin/listings');
+        const response = await fetch('https://find-your-perfect-home-backend.onrender.com/api/admin/listings');
         if (!response.ok) throw new Error('Failed to fetch listings');
         const result = await response.json();
         setListings(result || []);
@@ -74,7 +74,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const response = await fetch("http://localhost:5001/api/admin/reports");
+        const response = await fetch("https://find-your-perfect-home-backend.onrender.com/api/admin/reports");
         if (!response.ok) throw new Error("Failed to fetch reports");
         const data = await response.json();
         setReports(data); // Update state with the fetched reports
@@ -90,7 +90,7 @@ const AdminDashboard = () => {
   const handleApprove = async (listingId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5001/api/properties/${listingId}/approve`, {
+      const response = await fetch(`https://find-your-perfect-home-backend.onrender.com/api/properties/${listingId}/approve`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ const AdminDashboard = () => {
   const handleReject = async (listingId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5001/api/properties/${listingId}/reject`, {
+      const response = await fetch(`https://find-your-perfect-home-backend.onrender.com/api/properties/${listingId}/reject`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -143,7 +143,7 @@ const AdminDashboard = () => {
     const newStatus = currentStatus === 'active' ? 'suspended' : 'active';
 
     try {
-      const response = await fetch(`http://localhost:5001/api/admin/users/${userId}/suspend`, {
+      const response = await fetch(`https://find-your-perfect-home-backend.onrender.com/api/admin/users/${userId}/suspend`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),
@@ -171,7 +171,7 @@ const AdminDashboard = () => {
   // Handle save settings
   const handleSaveSettings = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/admin/settings', {
+      const response = await fetch('https://find-your-perfect-home-backend.onrender.com/api/admin/settings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(settings),
@@ -191,7 +191,7 @@ const AdminDashboard = () => {
   // Handle unblock/block user
   const handleUnblockUser = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/admin/users/${userId}/unblock`, {
+      const response = await fetch(`https://find-your-perfect-home-backend.onrender.com/api/admin/users/${userId}/unblock`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
       });

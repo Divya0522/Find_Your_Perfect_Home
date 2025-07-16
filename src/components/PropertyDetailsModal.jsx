@@ -26,7 +26,7 @@ const PropertyDetailsModal = ({ onClose, property }) => {
   useEffect(() => {
     const fetchOwner = async () => {
       try {
-        const response = await axios.get(`http://localhost:5001/api/users/find/${property.user_id}`);
+        const response = await axios.get(`https://find-your-perfect-home-backend.onrender.com/api/users/find/${property.user_id}`);
         setOwner(response.data);
       } catch (error) {
         console.error('Error fetching owner:', error);
@@ -38,7 +38,7 @@ const PropertyDetailsModal = ({ onClose, property }) => {
   const handleSaveListing = async () => {
     try {
       await axios.post(
-        'http://localhost:5001/api/properties/save-listing', // Fix: Add protocol (http://)
+        'https://find-your-perfect-home-backend.onrender.com/api/properties/save-listing', // Fix: Add protocol (http://)
         { listingId: property._id },
         { headers: { Authorization: `Bearer ${user.token}` } }
       );
@@ -57,7 +57,7 @@ const PropertyDetailsModal = ({ onClose, property }) => {
   useEffect(() => {
     const fetchOwner = async () => {
       try {
-        const response = await axios.get(`http://localhost:5001/api/users/find/${property.user_id}`);
+        const response = await axios.get(`https://find-your-perfect-home-backend.onrender.com/api/users/find/${property.user_id}`);
         setOwner(response.data);
       } catch (error) {
         console.error('Error fetching owner:', error);

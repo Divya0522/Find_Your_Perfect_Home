@@ -10,7 +10,7 @@ const BlockedUsers = () => {
     const fetchBlockedUsers = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:5001/api/users/blocked-users", {
+        const response = await axios.get("https://find-your-perfect-home-backend.onrender.com/api/users/blocked-users", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setBlockedUsers(response.data);
@@ -27,7 +27,7 @@ const BlockedUsers = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `http://localhost:5001/api/users/unblock-user/${userId}`,
+        `https://find-your-perfect-home-backend.onrender.com/api/users/unblock-user/${userId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

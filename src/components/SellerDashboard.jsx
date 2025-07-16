@@ -39,7 +39,7 @@ const SellerDashboard = () => {
   
   const fetchMyListings = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/api/properties/my-listings", {
+      const response = await axios.get("https://find-your-perfect-home-backend.onrender.com/api/properties/my-listings", {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -58,7 +58,7 @@ const SellerDashboard = () => {
   
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/api/properties/my-listings", {
+        const response = await axios.get("https://find-your-perfect-home-backend.onrender.com/api/properties/my-listings", {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
@@ -104,7 +104,7 @@ const handleListingSubmit = async () => {
   const handleSaveListing = async (listing) => {
     try {
       const response = await axios.post(
-        'http://localhost:5001/api/properties/save-listing',
+        'https://find-your-perfect-home-backend.onrender.com/api/properties/save-listing',
         { listingId: listing._id },
         { headers: { Authorization: `Bearer ${user.token}` } }
       );
@@ -130,7 +130,7 @@ const handleListingSubmit = async () => {
 
   const handleDeleteListing = async (listingId) => {
     try {
-      await axios.delete(`http://localhost:5001/api/properties/${listingId}`, {
+      await axios.delete(`https://find-your-perfect-home-backend.onrender.com/api/properties/${listingId}`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -157,7 +157,7 @@ const handleListingSubmit = async () => {
             <img
               src={user?.avatar?.includes('http')
                 ? user.avatar
-                : `http://localhost:5001/${user?.avatar}`}
+                : `https://find-your-perfect-home-backend.onrender.com/${user?.avatar}`}
               alt="Avatar"
               className="profile-avatar"
             />

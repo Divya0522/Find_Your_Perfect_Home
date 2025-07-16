@@ -34,7 +34,7 @@ const LoanRequestForm = ({ onClose }) => {
     ) {
       try {
         // Send the form data to the backend
-        const response = await axios.post('http://localhost:5001/api/submit-loan-request', formData);
+        const response = await axios.post('https://find-your-perfect-home-backend.onrender.com/api/submit-loan-request', formData);
 
         if (response.status === 200) {
           setIsSubmitted(true);

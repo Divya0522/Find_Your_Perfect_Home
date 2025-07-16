@@ -35,7 +35,7 @@ const ListingActionsDropdown = ({ listing, onSave, onUnsave, onBlock, onReport, 
 
       // Call the backend API to block the user
       const response = await axios.put(
-        `http://localhost:5001/api/users/${userIdString}/status`,
+        `https://find-your-perfect-home-backend.onrender.com/api/users/${userIdString}/status`,
         { status: "blocked" },
         {
           headers: {
@@ -72,7 +72,7 @@ const ListingActionsDropdown = ({ listing, onSave, onUnsave, onBlock, onReport, 
     }
 
     try {
-      const response = await fetch("http://localhost:5001/api/submit-report", {
+      const response = await fetch("https://find-your-perfect-home-backend.onrender.com/api/submit-report", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

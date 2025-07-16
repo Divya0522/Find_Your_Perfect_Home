@@ -73,7 +73,7 @@ const ListingForm = ({ onSubmit, initialData, onClose }) => {
     files.forEach(file => formData.append('images', file));
 
     try {
-      const response = await fetch('http://localhost:5001/api/properties/upload', {
+      const response = await fetch('https://find-your-perfect-home-backend.onrender.com/api/properties/upload', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${user.token}`,
@@ -100,7 +100,7 @@ const ListingForm = ({ onSubmit, initialData, onClose }) => {
     e.preventDefault();
     if (isSubmitting) return;
     setIsSubmitting(true);
-    const settingsResponse = await fetch('http://localhost:5001/api/settings');
+    const settingsResponse = await fetch('https://find-your-perfect-home-backend.onrender.com/api/settings');
     const settings = await settingsResponse.json();
     const autoApprove = settings.find(setting => setting.name === 'listingAutoApproval')?.value === 'true';
 
@@ -168,8 +168,8 @@ const ListingForm = ({ onSubmit, initialData, onClose }) => {
     try {
       const method = initialData ? "PUT" : "POST";
       const url = initialData
-        ? `http://localhost:5001/api/properties/${initialData._id}`
-        : "http://localhost:5001/api/properties";
+        ? `https://find-your-perfect-home-backend.onrender.com/api/properties/${initialData._id}`
+        : "https://find-your-perfect-home-backend.onrender.com/api/properties";
 
       const response = await axios[method.toLowerCase()](url, formattedData, {
         headers: {

@@ -15,7 +15,7 @@ const ReviewModal = ({ property, onClose, onSubmit }) => {
   
     try {
       const response = await axios.post(
-        `http://localhost:5001/api/properties/${property._id}/reviews`,
+        `https://find-your-perfect-home-backend.onrender.com/api/properties/${property._id}/reviews`,
         { review, rating },
         {
           headers: {

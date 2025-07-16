@@ -20,7 +20,7 @@ const handleSubmit = async (e) => {
   setMessage('');
 
   try {
-    const response = await fetch('http://localhost:5001/api/forgot-password', {
+    const response = await fetch('https://find-your-perfect-home-backend.onrender.com/api/forgot-password', {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',

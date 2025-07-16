@@ -24,7 +24,7 @@ const Profile = ({ onClose }) => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5001/api/users/find/${user._id}`,
+        `https://find-your-perfect-home-backend.onrender.com/api/users/find/${user._id}`,
         formData,
         {
           headers: { 'Content-Type': 'multipart/form-data' },
@@ -101,7 +101,7 @@ const Profile = ({ onClose }) => {
             <img
               src={user?.avatar?.includes('http') 
                 ? user.avatar 
-                : `http://localhost:5001/${user?.avatar}`||'./assets/avatar.svg'}
+                : `https://find-your-perfect-home-backend.onrender.com/${user?.avatar}`||'./assets/avatar.svg'}
               alt="Avatar"
               className="profile-avatar"
             />

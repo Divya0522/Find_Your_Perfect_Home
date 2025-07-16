@@ -46,7 +46,7 @@ const handleContactOwner = async () => {
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        const response = await axios.get(`http://localhost:5001/api/properties/${id}`);
+        const response = await axios.get(`https://find-your-perfect-home-backend.onrender.com/api/properties/${id}`);
         setProperty(response.data);
 
         // Extract the user_id if it's an object
@@ -58,11 +58,11 @@ const handleContactOwner = async () => {
         }
 
         // Fetch owner details
-        const ownerResponse = await axios.get(`http://localhost:5001/api/users/find/${userId}`);
+        const ownerResponse = await axios.get(`https://find-your-perfect-home-backend.onrender.com/api/users/find/${userId}`);
         setOwner(ownerResponse.data);
 
         // Fetch reviews
-        const reviewsResponse = await axios.get(`http://localhost:5001/api/properties/${id}/reviews`);
+        const reviewsResponse = await axios.get(`https://find-your-perfect-home-backend.onrender.com/api/properties/${id}/reviews`);
         setReviews(reviewsResponse.data);
       } catch (error) {
         console.error('Error fetching property details:', error);
