@@ -81,13 +81,13 @@ const RealEstateSearch = () => {
     const { value } = e.target;
     setFilters((prevFilters) => ({
       ...prevFilters,
-      minRating: value || '', // Ensure value is always defined
+      minRating: value || '', 
     }));
   
     if (value) {
       fetchPropertiesByRating(value);
     } else {
-      fetchProperties(); // Fetch all properties if no rating is specified
+      fetchProperties(); 
     }
   };
 
@@ -96,8 +96,8 @@ const RealEstateSearch = () => {
       const response = await axios.get('https://find-your-perfect-home-backend.onrender.com/api/properties/save-listings', {
         headers: { Authorization: `Bearer ${user.token}` },
       });
-      console.log('Saved listings:', response.data);
-      setSavedListings(new Set(response.data.map(listing => listing._id))); // Update the saved listings state
+    
+      setSavedListings(new Set(response.data.map(listing => listing._id))); 
     } catch (error) {
       console.error('Error fetching saved listings:', error);
     }
@@ -209,16 +209,7 @@ const RealEstateSearch = () => {
       console.error('Error unsaving listing:', error);
     }
   };
-  // useEffect(() => {
-  //   const handleClickOutside = () => {
-  //     if (showNotifications) {
-  //       setShowNotifications(false);
-  //     }
-  //   };
-    
-  //   document.addEventListener('click', handleClickOutside);
-  //   return () => document.removeEventListener('click', handleClickOutside);
-  // }, [showNotifications]);
+  
   return (
     <div className="search-container">
       {/* Header Section */}

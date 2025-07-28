@@ -22,28 +22,45 @@ const BlockedUsers = () => {
     fetchBlockedUsers();
   }, []);
 
-  // Handle unblocking a user
-  const handleUnblockUser = async (userId) => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.put(
-        `https://find-your-perfect-home-backend.onrender.com/api/users/unblock-user/${userId}`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-
-      if (response.status === 200) {
-        alert("User unblocked successfully!");
-        // Remove the unblocked user from the list
-        setBlockedUsers((prev) => prev.filter((user) => user._id !== userId));
+const handleUnblockUser = async (userId) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.put(
+      `https://find-your-perfect-home-backend.onrender.com/api/users/unblock-user/${userId}`,
+      {},
+      {
+        headers: { Authorization: `Bearer ${token}` },
       }
-    } catch (error) {
-      console.error("Error unblocking user:", error);
-      alert("Failed to unblock user.");
+    );
+
+    if (response.status === 200) {
+      alert("User unblocked successfully!");
+      setBlockedUsers((prev) => prev.filter((user) => user._id !== userId));
     }
-  };
+  } catch (error) {
+    console.error("Detailed unblock error:", {
+      message: error.message,
+      response: error.response?.data,
+      status: error.response?.status,
+    });
+    
+    if (error.response?.status === 404) {
+      alert("User not found. It may have been already unblocked.");
+    } else if (error.response?.status === 400) {
+      alert("Invalid request: " + (error.response.data.message || "Bad request"));
+    } else {
+      alert("Failed to unblock user. Please try again.");
+    }
+    
+    // Refresh the blocked users list
+    const token = localStorage.getItem("token");
+    const refreshResponse = await axios.get(
+      "https://find-your-perfect-home-backend.onrender.com/api/users/blocked-users",
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    setBlockedUsers(refreshResponse.data);
+  }
+};
 
   return (
     <div className="blocked-users-container">

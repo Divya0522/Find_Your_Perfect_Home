@@ -119,24 +119,64 @@ router.get("/blocked-users", async (req, res) => {
   }
 });
 
+// router.put("/unblock-user/:id", async (req, res) => {
+//   const { id } = req.params;
+
+//   try {
+//     const user = await userModel.findById(id);
+//     if (!user) {
+//       return res.status(404).json({ message: "User not found" });
+//     }
+
+//   S
+//     user.status = "active";
+//     await user.save();
+
+//     res.status(200).json({ message: "User unblocked successfully", user });
+//   } catch (error) {
+//     console.error("Error unblocking user:", error);
+//     res.status(500).json({ message: "Error unblocking user" });
+//   }
+// });
+
+
 router.put("/unblock-user/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
+    // Validate ID format
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid user ID format" });
+    }
+
     const user = await userModel.findById(id);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-  S
+    // Validate user has status field
+    if (typeof user.status === 'undefined') {
+      return res.status(400).json({ message: "User model doesn't have status field" });
+    }
+
     user.status = "active";
     await user.save();
 
-    res.status(200).json({ message: "User unblocked successfully", user });
+    res.status(200).json({ 
+      message: "User unblocked successfully", 
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        status: user.status
+      }
+    });
   } catch (error) {
     console.error("Error unblocking user:", error);
-    res.status(500).json({ message: "Error unblocking user" });
+    res.status(500).json({ 
+      message: "Error unblocking user",
+      error: error.message 
+    });
   }
 });
-
 module.exports=router;
