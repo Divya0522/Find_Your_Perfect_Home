@@ -6,36 +6,10 @@ import '../styles/ReviewModal.css'; // Ensure you have the correct CSS file
 const ReviewModal = ({ property, onClose, onSubmit }) => {
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(0);
-  // const handleSubmit = async () => {
-  //   const token = localStorage.getItem('token');
-  //   if (!token) {
-  //     console.error('No token found. Please log in.');
-  //     return;
-  //   }
-  
-  //   try {
-  //     const response = await axios.post(
-  //       `https://find-your-perfect-home-backend.onrender.com/api/properties/${property._id}/reviews`,
-  //       { review, rating },
-  //       {
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     );
-  //     console.log('Review submitted:', response.data);
-  //     onSubmit({ review, rating });
-  //     onClose();
-  //   } catch (error) {
-  //     console.error('Error submitting review:', error);
-  //   }
-  // };
- 
- 
+
  const handleSubmit = async () => {
   const token = localStorage.getItem('token');
-  console.log('Token from localStorage:', token); // Debug log
+ 
   
   if (!token) {
     console.error('No token found. Please log in.');
@@ -52,10 +26,10 @@ const ReviewModal = ({ property, onClose, onSubmit }) => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        withCredentials: true, // Add this if your backend requires credentials
+        withCredentials: true, 
       }
     );
-    console.log('Review submitted:', response.data);
+
     onSubmit({ review, rating });
     onClose();
   } catch (error) {
@@ -67,7 +41,6 @@ const ReviewModal = ({ property, onClose, onSubmit }) => {
     
     if (error.response?.status === 401) {
       alert('Session expired. Please log in again.');
-      // Optionally redirect to login page or clear token
       localStorage.removeItem('token');
     } else {
       alert('Failed to submit review. Please try again.');

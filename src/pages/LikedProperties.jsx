@@ -13,7 +13,7 @@ const LikedProperties = () => {
   useEffect(() => {
     const fetchLikedProperties = async () => {
       try {
-        const response = await axios.get(`http://localhost:5001/api/users/find/${user._id}`, {
+        const response = await axios.get(`https://find-your-perfect-home-backend.onrender.com/api/users/find/${user._id}`, {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
@@ -25,7 +25,7 @@ const LikedProperties = () => {
         const properties = await Promise.all(
           savedListings.map(async (listingId) => {
             try {
-              const propertyResponse = await axios.get(`http://localhost:5001/api/properties/${listingId}`);
+              const propertyResponse = await axios.get(`https://find-your-perfect-home-backend.onrender.com/api/properties/${listingId}`);
               return propertyResponse.data;
             } catch (error) {
               console.error(`Property ${listingId} not found:`, error);
@@ -53,7 +53,7 @@ const LikedProperties = () => {
   const handleUnsaveListing = async (listingId) => {
     try {
       await axios.post(
-        'http://localhost:5001/api/properties/unsave-listing',
+        'https://find-your-perfect-home-backend.onrender.com/api/properties/unsave-listing',
         { listingId },
         { headers: { Authorization: `Bearer ${user.token}` } }
       );
