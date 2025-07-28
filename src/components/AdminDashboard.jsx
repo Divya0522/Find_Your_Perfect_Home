@@ -560,7 +560,7 @@ const AdminDashboard = () => {
         {/* Blocked/Unblocked Users Tab */}
         {activeTab === 'Blocked' && (
           <div className="user-table">
-            <h2>Blocked/Unblocked Users</h2>
+            <h2>Blocked Users</h2>
             <table>
               <thead>
                 <tr>
@@ -568,7 +568,6 @@ const AdminDashboard = () => {
                   <th>Name</th>
                   <th>Email</th>
                   <th>Status</th>
-                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
