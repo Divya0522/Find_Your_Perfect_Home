@@ -14,6 +14,39 @@ router.get('/users', async (req, res) => {
   }
 });
 
+// In adminRoute.js
+router.put('/users/:id/unblock', async (req, res) => {
+  const { id } = req.params;
+  const token = req.headers.authorization?.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ message: "Authorization token required" });
+  }
+
+  try {
+    const user = await userModel.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.status = "active";
+    await user.save();
+
+    res.status(200).json({ 
+      message: "User unblocked successfully", 
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        status: user.status
+      }
+    });
+  } catch (error) {
+    console.error("Error unblocking user:", error);
+    res.status(500).json({ message: "Error unblocking user" });
+  }
+});
+
 router.put('/users/:id/suspend', async (req, res) => {
   const { status } = req.body;
   try {

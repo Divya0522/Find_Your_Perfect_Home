@@ -189,24 +189,50 @@ const AdminDashboard = () => {
   };
 
   // Handle unblock/block user
-  const handleUnblockUser = async (userId) => {
-    try {
-      const response = await fetch(`https://find-your-perfect-home-backend.onrender.com/api/admin/users/${userId}/unblock`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-      });
+  // const handleUnblockUser = async (userId) => {
+  //   try {
+  //     const response = await fetch(`https://find-your-perfect-home-backend.onrender.com/api/admin/users/${userId}/unblock`, {
+  //       method: 'PUT',
+  //       headers: { 'Content-Type': 'application/json' },
+  //     });
 
-      if (response.ok) {
-        setBlockedUsers(blockedUsers.map(user =>
-          user._id === userId ? { ...user, status: user.status === 'blocked' ? 'active' : 'blocked' } : user
-        ));
-      } else {
-        console.error('Failed to update user status');
-      }
-    } catch (error) {
-      console.error('Error unblocking user:', error);
+  //     if (response.ok) {
+  //       setBlockedUsers(blockedUsers.map(user =>
+  //         user._id === userId ? { ...user, status: user.status === 'blocked' ? 'active' : 'blocked' } : user
+  //       ));
+  //     } else {
+  //       console.error('Failed to update user status');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error unblocking user:', error);
+  //   }
+  // };
+
+
+  const handleUnblockUser = async (userId) => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`https://find-your-perfect-home-backend.onrender.com/api/users/unblock-user/${userId}`, {
+      method: 'PUT',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    });
+
+    if (response.ok) {
+      // Filter out the unblocked user
+      setBlockedUsers(blockedUsers.filter(user => user._id !== userId));
+      alert('User unblocked successfully');
+    } else {
+      const errorData = await response.json();
+      alert(errorData.message || 'Failed to unblock user');
     }
-  };
+  } catch (error) {
+    console.error('Error unblocking user:', error);
+    alert('Error unblocking user');
+  }
+};
 
 
   const ReportsModal = ({ reports, onClose }) => {
