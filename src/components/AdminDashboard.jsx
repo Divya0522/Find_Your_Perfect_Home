@@ -558,7 +558,7 @@ const AdminDashboard = () => {
         )}
 
         {/* Blocked/Unblocked Users Tab */}
-        {activeTab === 'Blocked/Unblocked Users' && (
+        {activeTab === 'Blocked' && (
           <div className="user-table">
             <h2>Blocked/Unblocked Users</h2>
             <table>
@@ -578,11 +578,6 @@ const AdminDashboard = () => {
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                     <td>{user.status}</td>
-                    <td>
-                      <button onClick={() => handleUnblockUser(user._id)}>
-                        {user.status === 'blocked' ? 'Unblock' : 'Block'}
-                      </button>
-                    </td>
                   </tr>
                 ))}
               </tbody>
