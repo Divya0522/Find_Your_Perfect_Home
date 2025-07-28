@@ -8,7 +8,7 @@ const Sidebar = ({ activeTab, setActiveTab,handleLogout }) => {
 
   const menuItems = [
     { name: 'View All Users', icon: <FaUser /> },
-    { name: 'Blocked/Unblocked Users', icon: <FaLock /> }, // New menu item
+    { name: 'Blocked', icon: <FaLock /> }, // New menu item
     { name: 'Suspend/Activate User Accounts', icon: <FaBan /> },
     { name: 'View All Listings', icon: <FaList /> },
     { name: 'Approve/Reject Listings', icon: <FaTasks /> },

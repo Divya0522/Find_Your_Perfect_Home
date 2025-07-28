@@ -337,7 +337,7 @@ const AdminDashboard = () => {
         {activeTab === '' && (
           <div className="home-page">
             <h1>Welcome to Admin Dashboard</h1>
-            <p>Manage your platform efficiently with real-time insights.</p>
+  
 
             {/* Statistics Cards */}
             <div className="stats-grid">
@@ -557,7 +557,7 @@ const AdminDashboard = () => {
           </div>
         )}
 
-        {/* Blocked/Unblocked Users Tab */}
+       
         {activeTab === 'Blocked' && (
           <div className="user-table">
             <h2>Blocked Users</h2>
